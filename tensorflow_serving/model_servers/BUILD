@@ -306,6 +306,7 @@ TENSORFLOW_DEPS = [
     "//tensorflow_serving/servables/tensorflow:saved_model_bundle_source_adapter",
     "//tensorflow_serving/servables/tensorflow:session_bundle_source_adapter",
     "//tensorflow_serving/servables/tensorflow:predict_impl",
+    "//tensorflow_serving/servables/tensorflow:model_info_impl",
 ]
 
 cc_library(
@@ -451,7 +452,7 @@ pkg_deb(
     name = "tensorflow_model_server_deb",
     data = ":tensorflow_model_server_tar",
     description = "TensorFlow Serving ModelServer",
-    homepage = "https://github.com/tensorflow/serving",
+    homepage = "https://github.com/ferdinandurban/serving",
     maintainer = "TensorFlow Serving team",
     package = "tensorflow-model-server",
     version = "1.13.0",  # Set when releasing a new version of TensorFlow Serving (e.g. 1.0.0).
@@ -462,7 +463,7 @@ pkg_deb(
     name = "tensorflow_model_server_universal_deb",
     data = ":tensorflow_model_server_tar",
     description = "TensorFlow Serving ModelServer",
-    homepage = "https://github.com/tensorflow/serving",
+    homepage = "https://github.com/ferdinandurban/serving",
     maintainer = "TensorFlow Serving team",
     package = "tensorflow-model-server-universal",
     version = "1.13.0",  # Set when releasing a new version of TensorFlow Serving (e.g. 1.0.0).

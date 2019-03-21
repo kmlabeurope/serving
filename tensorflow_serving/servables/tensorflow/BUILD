@@ -543,6 +543,24 @@ cc_test(
     ],
 )
 
+cc_library(
+    name = "model_info_impl",
+    srcs = ["model_info_impl.cc"],
+    hdrs = ["model_info_impl.h"],
+    visibility = [
+        "//visibility:public",
+    ],
+    deps = [
+        "//tensorflow_serving/apis:model_info_proto",
+        "//tensorflow_serving/core:servable_handle",
+        "//tensorflow_serving/model_servers:server_core",
+        "@org_tensorflow//tensorflow/cc/saved_model:loader",
+        "@org_tensorflow//tensorflow/contrib/session_bundle",
+        "@org_tensorflow//tensorflow/contrib/session_bundle:bundle_shim",
+        "@org_tensorflow//tensorflow/core:lib",
+    ],
+)
+
 cc_test(
     name = "predict_impl_test",
     size = "medium",

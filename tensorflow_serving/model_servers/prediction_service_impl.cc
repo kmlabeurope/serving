@@ -20,6 +20,7 @@ limitations under the License.
 #include "tensorflow_serving/servables/tensorflow/get_model_metadata_impl.h"
 #include "tensorflow_serving/servables/tensorflow/multi_inference_helper.h"
 #include "tensorflow_serving/servables/tensorflow/regression_service.h"
+#include "tensorflow_serving/servables/tensorflow/model_info_impl.h"
 
 namespace tensorflow {
 namespace serving {
@@ -111,6 +112,18 @@ int DeadlineToTimeoutMillis(const gpr_timespec deadline) {
     VLOG(1) << "MultiInference request failed: " << status.error_message();
   }
   return status;
+}
+
+::grpc::Status PredictionServiceImpl::GetModelInfo(
+        ::grpc::ServerContext *context, const ModelInfoRequest *request, ModelInfoResponse* response
+        ) override {
+    const grpc::Status status = ToGRPCStatus(ModelInfoImpl::GetModelInfo( core_.get(), *request, response));
+
+    if (!status.ok()) {
+        VLOG(1) << "ModelInfo failed: " << status.error_message();
+    }
+
+    return status;
 }
 
 }  // namespace serving

@@ -154,6 +154,24 @@ serving_proto_library_py(
 )
 
 serving_proto_library(
+    name = "model_info_proto",
+    srcs = ["model_info.proto"],
+    cc_api_version = 2,
+    go_api_version = 2,
+    java_api_version = 2,
+    deps = [
+        "@protobuf_archive//:cc_wkt_protos",
+    ],
+)
+
+serving_proto_library_py(
+    name = "model_info_proto_py_pb2",
+    srcs = ["model_info.proto"],
+    proto_library = "model_info_proto",
+    deps = [],
+)
+
+serving_proto_library(
     name = "prediction_service_proto",
     srcs = ["prediction_service.proto"],
     has_services = 1,
@@ -165,6 +183,7 @@ serving_proto_library(
         ":inference_proto",
         ":predict_proto",
         ":regression_proto",
+        ":model_info_proto",
     ],
 )
 
@@ -181,6 +200,7 @@ py_library(
         ":inference_proto_py_pb2",
         ":predict_proto_py_pb2",
         ":regression_proto_py_pb2",
+        ":model_info_proto_py_pb2",
     ],
 )
 

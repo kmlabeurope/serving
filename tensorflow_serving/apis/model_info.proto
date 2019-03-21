@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package tensorflow.serving;
+option cc_enable_arenas = true;
+
+import "google/protobuf/wrappers.proto";
+
+// message ServerSpecRequest {
+//   string input = 1;
+// }
+// message ServerSpecResponse {
+//   string outputs = 1;
+// }
+
+// Model name and version
+message ServableId {
+  string name = 1;
+  int64 version = 2;
+}
+ 
+// Request for sending info on running models
+message ModelInfoRequest {
+  // The model name or alias. If empty, then info on all running models is requested.
+  string model_name = 1;
+}
+ 
+// Returned model info
+message ModelInfoResponse {
+  repeated ServableId servables = 1;
+}
